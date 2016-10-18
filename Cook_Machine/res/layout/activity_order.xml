@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/base_actionbar_bg"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/tv_shopbus_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_back_n"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:lines="1"
+            android:text="购物车"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+    <!-- 属性的干扰要注意，有优先级的问题 -->
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/relativeLayout1"
+        android:orientation="vertical"
+        android:paddingTop="8dp" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5" >
+ <!-- Button的高度是默认的 -->
+            <!-- Button的两个属性比较重要，自然拉伸，还有就是注意图片的影响力和原始尺寸 ，微调 -->
+            <!-- drawableleft -->
+
+            <TextView
+                android:id="@+id/button1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="食物名称:"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:editable="false"
+                android:gravity="center"
+                android:text="蚝油南瓜食材包" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5" >
+ <!-- Button的高度是默认的 -->
+            <!-- Button的两个属性比较重要，自然拉伸，还有就是注意图片的影响力和原始尺寸 ，微调 -->
+            <!-- drawableleft -->
+
+            <TextView
+                android:id="@+id/button3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="食材内容"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/et_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:editable="false"
+                android:gravity="center"
+                android:text="主料:南瓜 380g  调料：色拉油一汤勺 蒜1/3头  小葱一根" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5" >
+ <!-- Button的高度是默认的 -->
+            <!-- Button的两个属性比较重要，自然拉伸，还有就是注意图片的影响力和原始尺寸 ，微调 -->
+            <!-- drawableleft -->
+
+            <TextView
+                android:id="@+id/button5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="单价:"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/button6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:editable="false"
+                android:gravity="center"
+                android:text="10元" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5" >
+ <!-- Button的高度是默认的 -->
+            <!-- Button的两个属性比较重要，自然拉伸，还有就是注意图片的影响力和原始尺寸 ，微调 -->
+            <!-- drawableleft -->
+
+            <TextView
+                android:id="@+id/button7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="数量"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/button8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:editable="true"
+                android:gravity="center"
+                android:text="2份" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5" >
+ <!-- Button的高度是默认的 -->
+            <!-- Button的两个属性比较重要，自然拉伸，还有就是注意图片的影响力和原始尺寸 ，微调 -->
+            <!-- drawableleft -->
+
+            <TextView
+                android:id="@+id/button9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="总价:"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/button10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:editable="false"
+                android:gravity="center"
+                android:text="20元" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayou11"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5" >
+ <!-- Button的高度是默认的 -->
+            <!-- Button的两个属性比较重要，自然拉伸，还有就是注意图片的影响力和原始尺寸 ，微调 -->
+            <!-- drawableleft -->
+
+            <TextView
+                android:id="@+id/button11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="配送地址:"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <!-- 适当的变化 -->
+
+            <EditText
+                android:id="@+id/button12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:editable="true"
+                android:gravity="center"
+                android:text="武汉市洪山区武汉科技大学南三511" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout13"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:weightSum="5" >
+ <!-- Button的高度是默认的 -->
+            <!-- Button的两个属性比较重要，自然拉伸，还有就是注意图片的影响力和原始尺寸 ，微调 -->
+            <!-- drawableleft -->
+
+            <TextView
+                android:id="@+id/button13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="电话:"
+                android:textColor="@color/red"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/button14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:editable="true"
+                android:gravity="center"
+                android:text="15102785298" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_shopbus_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/base_actionbar_bg"
+        android:text="确认提交"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+</RelativeLayout>

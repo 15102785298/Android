@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.haier_machine"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="22" />
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="com.example.haier_machine" >
+    </instrumentation>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="掌上随心烹"
+        android:theme="@android:style/Theme.Light.NoTitleBar" >
+        <uses-library android:name="android.test.runner" />
+
+        <activity
+            android:name="wust.dayin1.activity.CloudActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.LauncherActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.StepActivity"
+            android:label="@string/title_activity_step" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.ControlActivity"
+            android:label="@string/title_activity_cloud" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.ClassifyActivity"
+            android:label="@string/title_activity_classify" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.FoodDetailActivity"
+            android:label="@string/title_activity_food_detaild" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.SearchRstActivity"
+            android:label="@string/title_activity_search_rst" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.ComentFoodActivity"
+            android:label="@string/title_activity_coment_food" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.DangerActivity"
+            android:label="@string/title_activity_danger" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.ScurityActivity"
+            android:label="@string/title_activity_scurity" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.SubmitActivity"
+            android:label="@string/title_activity_submit" >
+        </activity>
+        <activity
+            android:name="wust.dayin1.activity.OrderActivity"
+            android:label="@string/title_activity_order" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.NativeFoodActivity" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.AddFoodActivity" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.LoginActivity" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.RegisterActivity" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.PersonInfo" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.AddCommunityActivity" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.CommunityActivity" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.ModifyFoodActivity" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.FindPSWActivity" >
+        </activity>
+    </application>
+
+</manifest>
