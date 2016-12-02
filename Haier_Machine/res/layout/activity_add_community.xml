@@ -67,18 +67,15 @@
             android:layout_weight="1"
             android:weightSum="5" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="标题  "
-                android:textSize="25sp" />
+
 
             <EditText
                 android:id="@+id/et_title"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
-                android:gravity="center" />
+                android:hint="请输入标题："
+                android:gravity="left" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,19 +85,28 @@
             android:layout_weight="1"
             android:weightSum="5" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="内容  "
-                android:textSize="25sp" />
+
 
             <EditText
                 android:id="@+id/et_content"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
+                android:layout_width="fill_parent"
+                android:layout_height="365dp"
                 android:layout_weight="4"
-                android:hint="字数不超过140" />
+                android:inputType="textMultiLine"
+                android:hint="请输入内容：" 
+                android:gravity="left|top"
+                />
         </LinearLayout>
+        
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_community_sure"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:background="@color/base_actionbar_bg"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
 
 </LinearLayout>

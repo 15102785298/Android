@@ -40,16 +40,16 @@
             android:text="添加食谱"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white" />
-        
+
         <TextView
             android:id="@+id/tv_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_margin="5dp"
             android:background="@drawable/btn_true_n"
+            android:clickable="true"
             android:gravity="center"
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
@@ -146,7 +146,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_weight="1.06"
                 android:gravity="center"
                 android:text="烹饪时间:"
                 android:textColor="@color/red"
@@ -156,9 +156,14 @@
                 android:id="@+id/et_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:gravity="center"
-                android:hint="以秒为单位" />
+                android:layout_weight="3.75"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 秒" />
         </LinearLayout>
 
         <LinearLayout
@@ -255,6 +260,7 @@
             android:id="@+id/linearLayout11"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
             android:weightSum="5" >
 
@@ -262,25 +268,22 @@
             <!-- Button的两个属性比较重要，自然拉伸，还有就是注意图片的影响力和原始尺寸 ，微调 -->
             <!-- drawableleft -->
 
-      
-
-            <TextView
-                android:id="@+id/tv_add_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:clickable="true"
-                android:paddingLeft="18dp"
-                android:text="图片"
-                android:textColor="@color/base_actionbar_bg" />
-
             <ImageView
-                android:id="@+id/img"
-                android:layout_width="match_parent"
-                android:layout_height="130dp" />
+                android:id="@+id/iv_add_pic"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:src="@drawable/btn_add_pic"
+                 />
         </LinearLayout>
-    </LinearLayout>
 
+        <Button
+            android:id="@+id/btn_add_food"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:background="@color/base_actionbar_bg"
+            android:text="添加"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </LinearLayout>
 
 </RelativeLayout>
