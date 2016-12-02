@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,6 +17,7 @@ import wust.dayin1.tools.ActivitySelector;
 import wust.dayin1.tools.ImageUtils;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -43,7 +46,7 @@ public class AddFoodActivity extends Activity implements OnClickListener {
 	private EditText mainstep;
 	private EditText content;
 	private TextView tv_add;
-	private File phoneFile;
+	private String pic_path;
 	private Button btn_add_food;
 	private String url;
 
@@ -64,7 +67,7 @@ public class AddFoodActivity extends Activity implements OnClickListener {
 		mainstep = (EditText) findViewById(R.id.et_foodskill);
 		content = (EditText) findViewById(R.id.et_foodcontent);
 		tv_add = (TextView) findViewById(R.id.tv_add);
-		btn_add_food=(Button) findViewById(R.id.btn_add_food);
+		btn_add_food = (Button) findViewById(R.id.btn_add_food);
 		tv_back.setOnClickListener(this);
 		tv_add.setOnClickListener(this);
 		iv_add_pic.setOnClickListener(this);
@@ -78,41 +81,49 @@ public class AddFoodActivity extends Activity implements OnClickListener {
 			ActivitySelector.closeActivity(AddFoodActivity.this);
 			break;
 		case R.id.tv_add:
-			if (foodName.getText().toString().equals("")
-					|| level.getText().toString().equals("")
-					|| time.getText().toString().equals("")
-					|| effect.getText().toString().equals("")
-					|| mainstep.getText().toString().equals("")
-					|| content.getText().toString().equals("")) {
-				Toast.makeText(this, "请将信息填写完整", Toast.LENGTH_SHORT).show();
-			} else {
-				Service service = new Service(getApplicationContext());
-				boolean flag = service.save(getFood());
-				if (flag) {
-					Intent i = new Intent(AddFoodActivity.this,
-							NativeFoodActivity.class);
-					startActivity(i);
-					Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
-				} else {
-					Toast.makeText(this, "添加错误", Toast.LENGTH_SHORT).show();
-				}
-			}
+			submit();
+			break;
+		case R.id.iv_add_pic:
+			ImageUtils.showImagePickDialog(AddFoodActivity.this);
 			break;
 		case R.id.btn_add_food:
-			ImageUtils.showImagePickDialog(AddFoodActivity.this);
+			submit();
 			break;
 		default:
 			break;
 		}
 	}
 
+	private void submit() {
+		if (foodName.getText().toString().equals("")
+				|| level.getText().toString().equals("")
+				|| time.getText().toString().equals("")
+				|| effect.getText().toString().equals("")
+				|| mainstep.getText().toString().equals("")
+				|| content.getText().toString().equals("")) {
+			Toast.makeText(this, "请将信息填写完整", Toast.LENGTH_SHORT).show();
+		} else {
+			Service service = new Service(getApplicationContext());
+			boolean flag = service.save(getFood());
+			if (flag) {
+				Intent i = new Intent(AddFoodActivity.this,
+						NativeFoodActivity.class);
+				startActivity(i);
+				Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+			} else {
+				Toast.makeText(this, "添加错误", Toast.LENGTH_SHORT).show();
+			}
+		}
+	}
+
 	// 获取食物信息
 	private Food getFood() {
+
 		Food food = new Food();
 		food.setName(foodName.getText().toString());
 		food.setTime(time.getText().toString());
 		food.setLevel(level.getText().toString());
-		food.setPath(phoneFile + "");
+		food.setPath(pic_path);
 		food.setEffect(effect.getText().toString());
 		food.setStep(mainstep.getText().toString());
 		food.setContent(content.getText().toString());
@@ -130,16 +141,31 @@ public class AddFoodActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-
+		iv_add_pic = (ImageView) findViewById(R.id.iv_add_pic);
+		String[] proj = { MediaStore.Images.Media.DATA };
+		Cursor actualimagecursor;
+		int actual_image_column_index;
 		switch (requestCode) {
+		case ImageUtils.REQUEST_CODE_FROM_ALBUM: // 相册
+			Uri imageUri = data.getData();
+			iv_add_pic.setImageURI(imageUri);
 
-		case ImageUtils.REQUEST_CODE_FROM_CAMERA: // 相机
-
-			Uri imageUriFromCamera = ImageUtils.imageUriFromCamera;
-			iv_add_pic.setImageResource(R.drawable.btn_add_n);
-			System.out.println("succsee" + imageUriFromCamera);
+			actualimagecursor = managedQuery(imageUri, proj, null, null, null);
+			actual_image_column_index = actualimagecursor
+					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			actualimagecursor.moveToFirst();
+			pic_path = actualimagecursor.getString(actual_image_column_index);
 			break;
-
+		case ImageUtils.REQUEST_CODE_FROM_CAMERA: // 相机
+			Uri imageUriFromCamera = ImageUtils.imageUriFromCamera;
+			iv_add_pic.setImageURI(imageUriFromCamera);
+			actualimagecursor = managedQuery(imageUriFromCamera, proj, null,
+					null, null);
+			actual_image_column_index = actualimagecursor
+					.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			actualimagecursor.moveToFirst();
+			pic_path = actualimagecursor.getString(actual_image_column_index);
+			break;
 		default:
 			break;
 		}

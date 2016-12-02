@@ -7,10 +7,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
-	import android.view.ViewGroup;
-	import android.widget.BaseAdapter;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -58,10 +59,12 @@ public class MyFoodAdapter extends BaseAdapter {
 		String foodName = cursor.getString(cursor.getColumnIndex("name"));
 		String effect = cursor.getString(cursor.getColumnIndex("effect"));
 		String url = cursor.getString(cursor.getColumnIndex("path"));
-		System.out.println(url);
+		System.out.println("in myfoodadapter:: "+url);
 		tv_foodName.setText(foodName);
 		tv_effect.setText(effect);
-		img.setImageBitmap(getPictureThumbnail(url, 200, 200));
+		
+		Bitmap bmp= BitmapFactory.decodeFile(url);
+		img.setImageBitmap(bmp);
 		return layout;
 	}
 
