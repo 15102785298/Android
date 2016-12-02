@@ -57,8 +57,7 @@ public class CommunityAdapter extends BaseAdapter {
 		Community c = datas.get(position);
 		holder.title.setText(c.getTitle());
 		holder.content.setText(c.getContent());
-		holder.userName.setText(c.getUsername());
-		holder.time.setText(c.getTime());
+		holder.userName.setText("”√ªß£∫ "+c.getUserName());
 		return convertView;
 	}
 

@@ -6,7 +6,7 @@ public class Community extends BmobObject {
 
     private String title;
     private String content;
-    private String username;
+    private String userName;
     private String time;
     
     public String getTime(){
@@ -32,12 +32,12 @@ public class Community extends BmobObject {
         this.content = content;
     }
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String username) {
+		this.userName = username;
 	}
 
 

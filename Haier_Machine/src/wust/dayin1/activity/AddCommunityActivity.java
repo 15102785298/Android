@@ -62,7 +62,7 @@ public class AddCommunityActivity extends Activity implements OnClickListener {
 					Community c = new Community();
 					c.setTitle(title_);
 					c.setContent(content_);
-					c.setUsername(BmobUser.getCurrentUser(
+					c.setUserName(BmobUser.getCurrentUser(
 							getApplicationContext()).getUsername());
 					c.save(this, new SaveListener() {
 						@Override
