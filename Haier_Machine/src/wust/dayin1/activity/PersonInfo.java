@@ -72,7 +72,7 @@ public class PersonInfo extends Activity implements OnClickListener {
 		case R.id.btn_community:
 			Toast.makeText(getApplicationContext(), "‘ÿ»Î÷–...",
 					Toast.LENGTH_LONG).show();
-			//startActivity(new Intent(PersonInfo.this, CommunityActivity.class));
+			startActivity(new Intent(PersonInfo.this, CommunityActivity.class));
 			break;
 		case R.id.tv_food:
 			startActivity(new Intent(PersonInfo.this, CloudActivity.class));

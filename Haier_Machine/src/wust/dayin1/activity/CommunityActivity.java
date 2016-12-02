@@ -2,8 +2,13 @@ package wust.dayin1.activity;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import wust.dayin1.adapter.CommunityAdapter;
 import wust.dayin1.enity.Community;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.FindCallback;
 import cn.bmob.v3.listener.FindListener;
 
 import com.example.haier_machine.R;
@@ -23,18 +29,16 @@ public class CommunityActivity extends Activity implements OnClickListener {
 	private ListView lv;
 	private TextView add_community;
 	private TextView back;
-	private TextView tv_search_back;
 	private CommunityAdapter adapter;
 	private Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
-			if(msg.what==1){
-				initData();
-			}
+
 		};
 	};
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_community);
 		init();
@@ -47,8 +51,6 @@ public class CommunityActivity extends Activity implements OnClickListener {
 		add_community.setOnClickListener(this);
 		back = (TextView) findViewById(R.id.tv_back);
 		back.setOnClickListener(this);
-		tv_search_back = (TextView) findViewById(R.id.tv_search_back);
-		tv_search_back.setOnClickListener(this);
 	}
 
 	@Override
@@ -70,14 +72,13 @@ public class CommunityActivity extends Activity implements OnClickListener {
 	public void initData() {
 		new Thread() {
 			public void run() {
-				//º”‘ÿÕ¯¬Á–≈œ¢
 				BmobQuery<Community> query = new BmobQuery<Community>();
 				query.findObjects(getApplicationContext(),
 						new FindListener<Community>() {
 							@Override
 							public void onSuccess(List<Community> arg0) {
-								for(int i = 0;i<arg0.size();i++)
-									arg0.get(i).setTime(arg0.get(i).getCreatedAt());
+								//for(int i = 0;i<arg0.size();i++)
+									//arg0.get(i).setTime(arg0.get(i).getCreatedAt());
 								adapter = new CommunityAdapter(
 										getApplicationContext(), arg0);
 								lv.setAdapter(adapter);
@@ -91,7 +92,7 @@ public class CommunityActivity extends Activity implements OnClickListener {
 							}
 						});
 				Message message = new Message();
-				message.what = 1;
+				message.arg1 = 1;
 				handler.sendMessage(message);
 			};
 		}.start();
