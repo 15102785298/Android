@@ -17,7 +17,7 @@ public class PersonInfo extends Activity implements OnClickListener {
 	private TextView account;
 	private TextView tv_food;
 
-	private Button btn_login, btn_community, btn_logout,btn_recommend;
+	private Button btn_login, btn_community, btn_logout,btn_recommend,btn_leaderboard;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +47,13 @@ public class PersonInfo extends Activity implements OnClickListener {
 		btn_community = (Button) findViewById(R.id.btn_community);
 		btn_recommend = (Button) findViewById(R.id.btn_recommend);
 		tv_food = (TextView) findViewById(R.id.tv_food);
+		btn_leaderboard=(Button) findViewById(R.id.btn_leaderboard);
 		tv_food.setOnClickListener(this);
 		btn_community.setOnClickListener(this);
 		btn_login.setOnClickListener(this);
 		btn_logout.setOnClickListener(this);
 		btn_recommend.setOnClickListener(this);
+		btn_leaderboard.setOnClickListener(this);
 	}
 
 	@SuppressWarnings("static-access")
@@ -78,6 +80,9 @@ public class PersonInfo extends Activity implements OnClickListener {
 			startActivity(new Intent(PersonInfo.this, CloudActivity.class));
 			break;
 		case R.id.btn_recommend:
+			startActivity(new Intent(PersonInfo.this,ClassifyActivity.class));
+			break;
+		case R.id.btn_leaderboard:
 			startActivity(new Intent(PersonInfo.this,ClassifyActivity.class));
 			break;
 		default:

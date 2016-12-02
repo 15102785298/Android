@@ -112,6 +112,8 @@
         </activity>
         <activity android:name="wust.dayin1.activity.OrderSuccess" >
         </activity>
+        <activity android:name="wust.dayin1.activity.leaderboardActivity" >
+        </activity>
     </application>
 
 </manifest>
