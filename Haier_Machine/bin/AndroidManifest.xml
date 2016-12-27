@@ -21,10 +21,11 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <permission android:name="android.permission.WRITE_MEDIA_STORAGE" ></permission>
-    <permission android:name="android.permission.READ_MEDIA_STORAGE" ></permission>
-    
-    
+
+    <permission android:name="android.permission.WRITE_MEDIA_STORAGE" >
+    </permission>
+    <permission android:name="android.permission.READ_MEDIA_STORAGE" >
+    </permission>
 
     <application
         android:allowBackup="true"
@@ -114,6 +115,11 @@
         </activity>
         <activity android:name="wust.dayin1.activity.leaderboardActivity" >
         </activity>
+        <activity android:name="wust.dayin1.activity.BindMachineActivity" >
+        </activity>
+        <activity android:name="wust.dayin1.activity.ControlMachineActivity" >
+        </activity>
+        
     </application>
 
 </manifest>

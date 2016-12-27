@@ -3,11 +3,17 @@ package wust.dayin1.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import wust.dayin1.adapter.CommunityAdapter;
 import wust.dayin1.adapter.GridViewAdapter;
+import wust.dayin1.enity.Community;
 import wust.dayin1.enity.Enity;
+import wust.dayin1.enity.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +22,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.GetListener;
 
 import com.example.haier_machine.R;
 
@@ -24,9 +36,11 @@ public class CloudActivity extends Activity {
 	ImageView login;
 	ImageView tv_search;
 	Button btn_nativeLocal;
+	TextView tv_bind_machine;
 	GridView gv_main_food;
 	List<Enity> list = new ArrayList<Enity>();
-	//数据在本地
+	boolean flag;
+	// 数据在本地
 	int[] pics = { R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4,
 			R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8 };
 	String[] strs = { "琥珀桃仁", "奶香爆米花", "蚝油南瓜", "榛仁巧克力牛轧糖", "微波蒸栗子", "奶油玉米",
@@ -60,8 +74,7 @@ public class CloudActivity extends Activity {
 		login.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-					startActivity(new Intent(CloudActivity.this,
-							PersonInfo.class));
+				startActivity(new Intent(CloudActivity.this, PersonInfo.class));
 			}
 		});
 
@@ -87,6 +100,43 @@ public class CloudActivity extends Activity {
 			}
 		});
 		gv_main_food.setAdapter(new GridViewAdapter(CloudActivity.this, list));
+		tv_bind_machine = (TextView) findViewById(R.id.tv_bind_machine);
+		flag = false;
+		
+		if (BmobUser.getCurrentUser(getApplicationContext()) == null) {
+			tv_bind_machine.setText("绑定");
+			flag = false;
+		} else {
+			System.out.println("emal/: "
+					+ BmobUser.getCurrentUser(getApplicationContext()).getEmail());
+			if (BmobUser.getCurrentUser(getApplicationContext()).getEmail() == null
+					|| BmobUser.getCurrentUser(getApplicationContext())
+							.getEmail().equals("")) {
+				tv_bind_machine.setText("绑定");
+				flag = false;
+			} else {
+				tv_bind_machine.setText("控制");
+				flag = true;
+			}
+		}
+		tv_bind_machine.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (BmobUser.getCurrentUser(getApplicationContext()) == null) {
+					Toast.makeText(getApplicationContext(), "您需要先登录哦~",
+							Toast.LENGTH_SHORT).show();
+				} else {
+					if (flag) {
+						startActivity(new Intent(CloudActivity.this,
+								ControlMachineActivity.class));
+					} else {
+						startActivity(new Intent(CloudActivity.this,
+								BindMachineActivity.class));
+					}
+				}
+			}
+		});
 	}
 
 	@Override

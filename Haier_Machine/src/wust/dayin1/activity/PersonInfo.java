@@ -83,7 +83,7 @@ public class PersonInfo extends Activity implements OnClickListener {
 			startActivity(new Intent(PersonInfo.this,ClassifyActivity.class));
 			break;
 		case R.id.btn_leaderboard:
-			startActivity(new Intent(PersonInfo.this,ClassifyActivity.class));
+			startActivity(new Intent(PersonInfo.this,leaderboardActivity.class));
 			break;
 		default:
 			break;

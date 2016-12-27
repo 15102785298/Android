@@ -5,85 +5,102 @@
     android:background="@color/white_wymimicry"
     tools:context=".CloudActivity" >
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/base_actionbar_bg"
+        android:padding="5dp" >
+
+        <ImageView
+            android:id="@+id/tv_login"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/sliding_menu"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:lines="1"
+            android:text="云端热门菜谱"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_bind_machine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:background="@color/base_actionbar_bg"
-            android:padding="5dp" >
-
-            <ImageView
-                android:id="@+id/tv_login"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_margin="5dp"
-                android:clickable="true"
-                android:gravity="center"
-                android:paddingBottom="5dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:src="@drawable/sliding_menu"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:id="@+id/tv_setting_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:lines="1"
-                android:text="云端热门菜谱"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/white" />
-
-        </RelativeLayout>
-
-        <ListView
-            android:id="@+id/subsoft_listview"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_below="@+id/relativeLayout1"
-            android:layout_margin="10dp"
-            android:divider="@color/blue_menu"
-            android:dividerHeight="0.5dp"
-            android:fastScrollEnabled="true"
-            android:padding="5dp"
-            android:visibility="invisible" >
-        </ListView>
-
-        <GridView
-            android:id="@+id/gv_cloud_food"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_above="@+id/btn_cloud_classify"
-            android:layout_below="@+id/relativeLayout1"
-            android:layout_margin="8dp"
+            android:layout_margin="5dp"
+            android:clickable="true"
             android:gravity="center"
-            android:horizontalSpacing="2dp"
-            android:numColumns="2"
-            android:scrollbars="none"
-            android:verticalSpacing="20dp"
-            android:visibility="visible" >
-        </GridView>
-        <!-- 权重是现形布局来控制的 -->
-
-        <Button
-            android:id="@+id/btn_nativeLocal"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:background="@color/base_actionbar_bg"
-            android:text="本地菜谱"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="绑定"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/subsoft_listview"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_margin="10dp"
+        android:divider="@color/blue_menu"
+        android:dividerHeight="0.5dp"
+        android:fastScrollEnabled="true"
+        android:padding="5dp"
+        android:visibility="invisible" >
+    </ListView>
+
+    <GridView
+        android:id="@+id/gv_cloud_food"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/btn_cloud_classify"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:horizontalSpacing="2dp"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="20dp"
+        android:visibility="visible" >
+    </GridView>
+    <!-- 权重是现形布局来控制的 -->
+
+    <Button
+        android:id="@+id/btn_nativeLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/base_actionbar_bg"
+        android:text="本地菜谱"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
 
 </RelativeLayout>

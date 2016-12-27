@@ -11,8 +11,15 @@ public class User extends BmobUser{
 	private String account;
     private String password;
     private String email;
+    private String Machine_Mac;
 
-    public String getEmail() {
+    public String getMachine_Mac() {
+		return Machine_Mac;
+	}
+	public void setMachine_Mac(String machine_Mac) {
+		Machine_Mac = machine_Mac;
+	}
+	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
