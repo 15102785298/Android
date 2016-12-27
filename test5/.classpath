@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="javaFileLearn"/>
+	<classpathentry kind="src" path="javaThreadLearn"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="javaJniLearn"/>
+	<classpathentry kind="src" path="javaPictureUpdate"/>
+	<classpathentry kind="src" path="javaHeap"/>
+	<classpathentry kind="src" path="javaReflact"/>
+	<classpathentry kind="src" path="javaEightQueens"/>
+	<classpathentry kind="src" path="javaObjectPool"/>
+	<classpathentry kind="src" path="javaSocket"/>
+	<classpathentry kind="src" path="javaOperators"/>
+	<classpathentry kind="src" path="javaFileSystem"/>
+	<classpathentry kind="src" path="javaSort"/>
+	<classpathentry kind="src" path="javaAnnotation"/>
+	<classpathentry kind="src" path="javaShare"/>
+	<classpathentry kind="src" path="javaException"/>
+	<classpathentry kind="src" path="javaEnum"/>
+	<classpathentry kind="src" path="javaInternalClass"/>
+	<classpathentry kind="src" path="javaVariable"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="javaMap"/>
+	<classpathentry kind="src" path="javaSearch"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Excel"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Xml"/>
+	<classpathentry kind="lib" path="src/commons-io-2.4.jar" sourcepath="E:/qq数据/commons-lang3-3.1.jar">
+		<attributes>
+			<attribute name="source_encoding" value="UTF-8"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/commons-lang3-3.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
