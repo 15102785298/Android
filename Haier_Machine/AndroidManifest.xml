@@ -47,6 +47,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="wust.dayin1.activity.TestPicActivity"
+            android:label="@string/title_activity_step" >
+        </activity>
+        
         <activity
             android:name="wust.dayin1.activity.StepActivity"
             android:label="@string/title_activity_step" >

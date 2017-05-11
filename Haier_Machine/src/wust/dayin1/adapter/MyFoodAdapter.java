@@ -63,7 +63,7 @@ public class MyFoodAdapter extends BaseAdapter {
 		tv_foodName.setText(foodName);
 		tv_effect.setText(effect);
 		
-		Bitmap bmp= BitmapFactory.decodeFile(url);
+		Bitmap bmp= getPictureThumbnail(url,90,60);
 		img.setImageBitmap(bmp);
 		return layout;
 	}

@@ -94,7 +94,7 @@ public class CloudActivity extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				Intent i = new Intent(CloudActivity.this,
-						FoodDetailActivity.class);
+						TestPicActivity.class);
 				i.putExtra("id", arg2 + "");
 				startActivity(i);
 			}

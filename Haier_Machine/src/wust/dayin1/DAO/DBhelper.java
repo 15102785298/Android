@@ -31,12 +31,6 @@ public class DBhelper extends SQLiteOpenHelper {
 				+ " TEXT NOT NULL," + EFFECT + " TEXT NOT NULL," + STEP
 				+ " TEXT NOT NULL," + CONTENT + " TEXT NOT NULL," + PATH
 				+ " TEXT NOT NULL)");
-		db.execSQL("CREATE TABLE " + order_String.TABLE_NAME + " (" + order_String.ID
-				+ " INTEGER PRIMARY KEY AUTOINCREMENT," + order_String.FOOD_NAME
-				+ " TEXT NOT NULL," + order_String.ADDRESS + " TEXT NOT NULL," + order_String.ALL_PAY
-				+ " TEXT NOT NULL," + order_String.CONTENT + " TEXT NOT NULL," + order_String.NUM
-				+ " TEXT NOT NULL," + order_String.PRICE + " TEXT NOT NULL," + order_String.PHONE
-				+ " TEXT NOT NULL)");
 
 	}
 

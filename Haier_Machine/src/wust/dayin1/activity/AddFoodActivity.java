@@ -33,7 +33,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.haier_machine.R;
-import com.squareup.picasso.Picasso;
 
 public class AddFoodActivity extends Activity implements OnClickListener {
 
