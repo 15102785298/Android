@@ -7,6 +7,7 @@ import wust.dayin1.adapter.CommunityAdapter;
 import wust.dayin1.adapter.GridViewAdapter;
 import wust.dayin1.enity.Community;
 import wust.dayin1.enity.Enity;
+import wust.dayin1.enity.Menu;
 import wust.dayin1.enity.User;
 import android.app.Activity;
 import android.content.Intent;
@@ -63,12 +64,9 @@ public class CloudActivity extends Activity {
 	}
 
 	private void init() {
-		for (int i = 0; i < 8; i++) {
-			Enity enity = new Enity();
-			enity.setFood_name(strs[i]);
-			enity.setFood_pic(pics[i]);
-			list.add(enity);
-		}
+
+		getMenuData();
+
 		// 登陆
 		login = (ImageView) findViewById(R.id.tv_login);
 		login.setOnClickListener(new OnClickListener() {
@@ -93,22 +91,22 @@ public class CloudActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent i = new Intent(CloudActivity.this,
-						TestPicActivity.class);
+				Intent i = new Intent(CloudActivity.this, TestPicActivity.class);
 				i.putExtra("id", arg2 + "");
 				startActivity(i);
 			}
 		});
-		gv_main_food.setAdapter(new GridViewAdapter(CloudActivity.this, list));
+		
 		tv_bind_machine = (TextView) findViewById(R.id.tv_bind_machine);
 		flag = false;
-		
+
 		if (BmobUser.getCurrentUser(getApplicationContext()) == null) {
 			tv_bind_machine.setText("绑定");
 			flag = false;
 		} else {
 			System.out.println("emal/: "
-					+ BmobUser.getCurrentUser(getApplicationContext()).getEmail());
+					+ BmobUser.getCurrentUser(getApplicationContext())
+							.getEmail());
 			if (BmobUser.getCurrentUser(getApplicationContext()).getEmail() == null
 					|| BmobUser.getCurrentUser(getApplicationContext())
 							.getEmail().equals("")) {
@@ -137,6 +135,44 @@ public class CloudActivity extends Activity {
 				}
 			}
 		});
+	}
+
+	private void getMenuData() {
+		// TODO Auto-generated method stub
+
+		// 新建线程加载图片信息，发送到消息队列中
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				BmobQuery<Menu> query = new BmobQuery<Menu>();
+				query.findObjects(getApplicationContext(),
+						new FindListener<Menu>() {
+							@Override
+							public void onSuccess(List<Menu> arg0) {
+								int size = arg0.size();
+								for (int i = 0; i < size; i++) {
+									Enity enity = new Enity();
+									enity.setFood_name(arg0.get(i).getStr());
+									enity.setFood_pic(arg0.get(i).getPic());
+									list.add(enity);
+								}
+								gv_main_food.setAdapter(new GridViewAdapter(CloudActivity.this, list));
+							}
+
+							@Override
+							public void onError(int arg0, String arg1) {
+								Toast.makeText(getApplicationContext(), "载入错误",
+										Toast.LENGTH_LONG).show();
+
+							}
+						});
+
+			}
+		}).start();
+
+		
 	}
 
 	@Override

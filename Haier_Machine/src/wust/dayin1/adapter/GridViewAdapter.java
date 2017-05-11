@@ -12,17 +12,18 @@ import android.widget.TextView;
 
 import com.example.haier_machine.R;
 
-public class GridViewAdapter extends BaseAdapter {  	
+public class GridViewAdapter extends BaseAdapter {
 	LayoutInflater inflater;
-	List<Enity> pkInfos;//数据源
-	//框架，很重要
-	public GridViewAdapter(Context context,List<Enity> packageInfos) {
+	List<Enity> pkInfos;// 数据源
+
+	// 框架，很重要
+	public GridViewAdapter(Context context, List<Enity> packageInfos) {
 		inflater = LayoutInflater.from(context);
 		this.pkInfos = packageInfos;
 	}
 
 	@Override
-	public int getCount() {//循环次数
+	public int getCount() {// 循环次数
 		// TODO Auto-generated method stub
 		return pkInfos.size();
 	}
@@ -55,15 +56,14 @@ public class GridViewAdapter extends BaseAdapter {
 		}
 		
 		holder.label .setText(pkInfos.get(position).getFood_name());
-		holder.icon.setImageResource(pkInfos.get(position).
-				getFood_pic());
-		
+		pkInfos.get(position).
+		getFood_pic().loadImage(inflater.getContext(), holder.icon);		
 		return convertView;
 	}
-	
+
 	class ViewHolder {
-		    ImageView icon;
-		    TextView label;
-		 }	
-	
+		ImageView icon;
+		TextView label;
+	}
+
 }
