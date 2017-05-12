@@ -41,11 +41,6 @@ public class CloudActivity extends Activity {
 	GridView gv_main_food;
 	List<Enity> list = new ArrayList<Enity>();
 	boolean flag;
-	// 数据在本地
-	int[] pics = { R.drawable.m1, R.drawable.m2, R.drawable.m3, R.drawable.m4,
-			R.drawable.m5, R.drawable.m6, R.drawable.m7, R.drawable.m8 };
-	String[] strs = { "琥珀桃仁", "奶香爆米花", "蚝油南瓜", "榛仁巧克力牛轧糖", "微波蒸栗子", "奶油玉米",
-			"蒜香排骨", "意大利披萨" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +86,12 @@ public class CloudActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent i = new Intent(CloudActivity.this, TestPicActivity.class);
-				i.putExtra("id", arg2 + "");
+				Intent i = new Intent(CloudActivity.this, FoodDetailActivity.class);
+				i.putExtra("menu", list.get(arg2));
 				startActivity(i);
 			}
 		});
-		
+
 		tv_bind_machine = (TextView) findViewById(R.id.tv_bind_machine);
 		flag = false;
 
@@ -154,11 +149,18 @@ public class CloudActivity extends Activity {
 								int size = arg0.size();
 								for (int i = 0; i < size; i++) {
 									Enity enity = new Enity();
-									enity.setFood_name(arg0.get(i).getStr());
-									enity.setFood_pic(arg0.get(i).getPic());
+									Menu temp = arg0.get(i);
+									enity.setFood_name(temp.getStr());
+									enity.setFood_pic(temp.getPic());
+									enity.setContents(temp.getContent());
+									enity.setEffects(temp.getEffect());
+									enity.setLevels(temp.getLevel());
+									enity.setSteps(temp.getStep());
+									enity.setId(temp.getId());
 									list.add(enity);
 								}
-								gv_main_food.setAdapter(new GridViewAdapter(CloudActivity.this, list));
+								gv_main_food.setAdapter(new GridViewAdapter(
+										CloudActivity.this, list));
 							}
 
 							@Override
@@ -172,7 +174,6 @@ public class CloudActivity extends Activity {
 			}
 		}).start();
 
-		
 	}
 
 	@Override

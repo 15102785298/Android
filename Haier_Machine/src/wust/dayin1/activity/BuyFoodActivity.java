@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 import wust.dayin1.DAO.DBhelper;
 import wust.dayin1.enity.Community;
+import wust.dayin1.enity.Enity;
 import wust.dayin1.enity.Order;
 import android.app.Activity;
 import android.content.Intent;
@@ -33,6 +34,7 @@ public class BuyFoodActivity extends Activity implements OnClickListener {
 	private Button btn_shopbus_submit;
 	private TextView tv_add_address;
 	private TextView tv_shopbus_back;
+	private Enity enity;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +66,9 @@ public class BuyFoodActivity extends Activity implements OnClickListener {
 	}
 
 	private void initValue() {
-		content = getIntent().getStringExtra(DBhelper.CONTENT);
-		food_name = getIntent().getStringExtra(DBhelper.NAME);
+		enity = (Enity) getIntent().getSerializableExtra("menu");
+		content = enity.getContents();
+		food_name = enity.getFood_name();
 		String[] content_foods = StringUtils.split(content, '£¬');
 		StringBuffer text = new StringBuffer("Ö÷Ê³£º");
 		boolean flag = true;
