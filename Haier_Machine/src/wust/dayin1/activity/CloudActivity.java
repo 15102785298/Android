@@ -9,6 +9,7 @@ import wust.dayin1.enity.Community;
 import wust.dayin1.enity.Enity;
 import wust.dayin1.enity.Menu;
 import wust.dayin1.enity.User;
+import wust.dayin1.tools.ZProgressHUD;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -86,7 +87,8 @@ public class CloudActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent i = new Intent(CloudActivity.this, FoodDetailActivity.class);
+				Intent i = new Intent(CloudActivity.this,
+						FoodDetailActivity.class);
 				i.putExtra("menu", list.get(arg2));
 				startActivity(i);
 			}
@@ -135,6 +137,9 @@ public class CloudActivity extends Activity {
 	private void getMenuData() {
 		// TODO Auto-generated method stub
 
+		final ZProgressHUD progressHUD = ZProgressHUD.getInstance(this);
+		progressHUD.setSpinnerType(ZProgressHUD.SIMPLE_ROUND_SPINNER);
+		progressHUD.show();
 		// 新建线程加载图片信息，发送到消息队列中
 		new Thread(new Runnable() {
 
@@ -157,10 +162,14 @@ public class CloudActivity extends Activity {
 									enity.setLevels(temp.getLevel());
 									enity.setSteps(temp.getStep());
 									enity.setId(temp.getId());
+									enity.setTimes(temp.getTimes());
 									list.add(enity);
 								}
 								gv_main_food.setAdapter(new GridViewAdapter(
 										CloudActivity.this, list));
+								Toast.makeText(getApplicationContext(),
+										"载入成功！", Toast.LENGTH_LONG).show();
+								progressHUD.dismissWithSuccess();
 							}
 
 							@Override

@@ -70,7 +70,14 @@ public class FoodDetailActivity extends Activity implements OnClickListener {
 		tv_detail_foodname.setText(enity.getFood_name());
 		tv_detail_level.setText(enity.getLevels());
 		tv_detail_effect.setText(enity.getEffects());
-		enity.getFood_pic().loadImage(getApplicationContext(), iv_food);
+		if (enity.getFood_pic() != null) // 网络库
+			enity.getFood_pic().loadImage(getApplicationContext(), iv_food);
+		else // 本地库
+		{
+			Bitmap pic = BitmapFactory.decodeFile(getIntent().getStringExtra(
+					"pic_path"));
+			iv_food.setImageBitmap(pic);
+		}
 	}
 
 	@Override
@@ -79,6 +86,12 @@ public class FoodDetailActivity extends Activity implements OnClickListener {
 		case R.id.tv_fooddetail_back:
 			startActivity(new Intent(FoodDetailActivity.this,
 					CloudActivity.class));
+			break;
+		case R.id.tv_fooddetail_cook:
+			Intent i = new Intent(FoodDetailActivity.this,
+					ControlActivity.class);
+			i.putExtra("menu", enity);
+			startActivity(i);
 			break;
 		// case R.id.tv_fooddetail_cook:
 		// Intent i = new Intent(FoodDetailActivity.this,
@@ -136,11 +149,14 @@ public class FoodDetailActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.tv_detail_comment:
-			
-			Intent intent_comment =new Intent(FoodDetailActivity.this,
-					ComentFoodActivity.class);
-			intent_comment.putExtra("menu", enity);
-			startActivity(intent_comment);
+			if (enity.getId() != null) {
+				Intent intent_comment = new Intent(FoodDetailActivity.this,
+						ComentFoodActivity.class);
+				intent_comment.putExtra("menu", enity);
+				startActivity(intent_comment);
+			} else {
+				DialogDemo.builder2(this, "提示", "本地数据不能评价哦~");
+			}
 			break;
 		case R.id.btn_fooddetail_order:
 			Intent intent = new Intent(FoodDetailActivity.this,

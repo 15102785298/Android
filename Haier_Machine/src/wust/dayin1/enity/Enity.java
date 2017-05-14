@@ -2,22 +2,33 @@ package wust.dayin1.enity;
 
 import java.io.Serializable;
 
+import android.R.integer;
 import cn.bmob.v3.datatype.BmobFile;
 
-public class Enity implements Serializable{
+public class Enity implements Serializable {
 	private String food_name;
 	private BmobFile food_pic;
 	private String contents;
 	private String levels;
 	private String effects;
 	private String steps;
-	private int id;
+	private String times;
 
-	public int getId() {
+	public String getTimes() {
+		return times;
+	}
+
+	public void setTimes(String times) {
+		this.times = times;
+	}
+
+	private Integer id = null;
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

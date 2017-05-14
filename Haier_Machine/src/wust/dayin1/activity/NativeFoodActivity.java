@@ -7,6 +7,7 @@ import wust.dayin1.DAO.DBhelper;
 import wust.dayin1.DAO.Service;
 import wust.dayin1.adapter.MyFoodAdapter;
 import wust.dayin1.adapter.MyFoodAdapter2;
+import wust.dayin1.enity.Enity;
 import wust.dayin1.enity.Food;
 import wust.dayin1.tools.ActivitySelector;
 import android.app.Activity;
@@ -51,14 +52,15 @@ public class NativeFoodActivity extends Activity implements OnClickListener,
 	}
 
 	public void init() {
+		db = new DBhelper(NativeFoodActivity.this);
+		database = db.getReadableDatabase();
+		cursor = database.query("food", null, null, null, null, null, null);
 		tv_add = (TextView) findViewById(R.id.tv_fooddetail_add);
 		tv_back = (TextView) findViewById(R.id.tv_fooddetail_back);
 		et = (EditText) findViewById(R.id.et);
 		et.addTextChangedListener(this);
 		lv = (ListView) findViewById(R.id.subsoft_listview);
-		db = new DBhelper(this);
 		service = new Service(getApplicationContext());
-		database = db.getReadableDatabase();
 		tv_add.setOnClickListener(this);
 		tv_back.setOnClickListener(this);
 		lv.setOnItemClickListener(new OnItemClickListener() {
@@ -66,25 +68,26 @@ public class NativeFoodActivity extends Activity implements OnClickListener,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				cursor.moveToPosition(position);
 				Intent i = new Intent(NativeFoodActivity.this,
 						FoodDetailActivity.class);
-				i.putExtra(DBhelper.ID,
-						cursor.getInt(cursor.getColumnIndex(DBhelper.ID)));
-				i.putExtra(DBhelper.EFFECT, cursor.getString(cursor
-						.getColumnIndex(DBhelper.EFFECT)));
-				i.putExtra(DBhelper.LEVEL,
-						cursor.getString(cursor.getColumnIndex(DBhelper.LEVEL)));
-				i.putExtra(DBhelper.NAME,
-						cursor.getString(cursor.getColumnIndex(DBhelper.NAME)));
-				i.putExtra(DBhelper.PATH,
-						cursor.getString(cursor.getColumnIndex(DBhelper.PATH)));
-				i.putExtra(DBhelper.STEP,
-						cursor.getString(cursor.getColumnIndex(DBhelper.STEP)));
-				i.putExtra(DBhelper.TIME,
-						cursor.getString(cursor.getColumnIndex(DBhelper.TIME)));
-				i.putExtra(DBhelper.CONTENT, cursor.getString(cursor
+				Enity enity = new Enity();
+				enity.setContents(cursor.getString(cursor
 						.getColumnIndex(DBhelper.CONTENT)));
+				enity.setEffects(cursor.getString(cursor
+						.getColumnIndex(DBhelper.EFFECT)));
+				enity.setFood_name(cursor.getString(cursor
+						.getColumnIndex(DBhelper.NAME)));
+				enity.setLevels(cursor.getString(cursor
+						.getColumnIndex(DBhelper.LEVEL)));
+				enity.setSteps(cursor.getString(cursor
+						.getColumnIndex(DBhelper.STEP)));
+				enity.setTimes(cursor.getString(cursor
+						.getColumnIndex(DBhelper.TIME)));
+				enity.setFood_pic(null);
+				i.putExtra("pic_path",
+						cursor.getString(cursor.getColumnIndex(DBhelper.PATH)));
+
+				i.putExtra("menu", enity);
 				startActivity(i);
 			}
 		});
@@ -125,9 +128,7 @@ public class NativeFoodActivity extends Activity implements OnClickListener,
 	@Override
 	public boolean onItemLongClick(AdapterView<?> parent, View view,
 			int position, long id) {
-		db = new DBhelper(NativeFoodActivity.this);
-		database = db.getReadableDatabase();
-		cursor = database.query("food", null, null, null, null, null, null);
+		
 		cursor.moveToPosition(position);
 		final int _id = cursor.getInt(cursor.getColumnIndex("_id"));
 		AlertDialog.Builder builder = new AlertDialog.Builder(

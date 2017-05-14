@@ -1,6 +1,7 @@
 package wust.dayin1.activity;
 
 import wust.dayin1.DAO.DBhelper;
+import wust.dayin1.enity.Enity;
 import wust.dayin1.view.MultiDirectionSlidingDrawer;
 import android.app.Activity;
 import android.content.Intent;
@@ -41,6 +42,7 @@ public class ControlActivity extends Activity implements OnClickListener {
 	int[] colors = { R.color.blue_menu, R.color.pink_menu, R.color.orange_menu };
 	String steps;
 	String[] step;
+	Enity enity = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +60,17 @@ public class ControlActivity extends Activity implements OnClickListener {
 	}
 
 	private void init() {
-		cloud_seconds = Integer.parseInt(getIntent().getStringExtra("time"));
-		steps = getIntent().getStringExtra(DBhelper.STEP);
+		Intent intent = getIntent();
+		enity = (Enity) intent.getSerializableExtra("menu");
+		cloud_seconds = Integer.parseInt(enity.getTimes());
+		steps = enity.getSteps();
 		step = steps.split(" ");
 		relav_back = (RelativeLayout) findViewById(R.id.relav_color);
 		iv_lighter = (ImageView) findViewById(R.id.iv_lighter);
 		iv_start = (ImageView) findViewById(R.id.iv_start);
 		iv_stop = (ImageView) findViewById(R.id.iv_stop);
 		tv_food = (TextView) findViewById(R.id.tv_food);
-		tv_food.setText(getIntent().getStringExtra(DBhelper.NAME));
+		tv_food.setText(enity.getFood_name());
 		tv_food.setOnClickListener(this);
 		tv_temperature = (TextView) findViewById(R.id.tv_now_temperature);
 		tv_once_time = (TextView) findViewById(R.id.tv_once_timerup);
@@ -244,16 +248,7 @@ public class ControlActivity extends Activity implements OnClickListener {
 		case R.id.tv_food:
 			Intent i = new Intent(ControlActivity.this,
 					FoodDetailActivity.class);
-			i.putExtra("id", this.getIntent().getStringExtra("id"));
-			Log.i("TAG", this.getIntent().getStringExtra("id"));
-			i.putExtra(DBhelper.NAME, getIntent().getStringExtra(DBhelper.NAME));
-			i.putExtra(DBhelper.STEP, getIntent().getStringExtra(DBhelper.STEP));
-			i.putExtra(DBhelper.TIME, getIntent().getStringExtra(DBhelper.TIME));
-			i.putExtra(DBhelper.CONTENT,
-					getIntent().getStringExtra(DBhelper.CONTENT));
-			i.putExtra(DBhelper.LEVEL, getIntent().getStringExtra(DBhelper.LEVEL));
-			i.putExtra(DBhelper.PATH, getIntent().getStringExtra(DBhelper.PATH));
-			i.putExtra(DBhelper.EFFECT, getIntent().getStringExtra(DBhelper.EFFECT));
+			i.putExtra("menu", enity);
 			startActivity(i);
 			break;
 		default:

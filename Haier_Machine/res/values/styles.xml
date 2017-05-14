@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -16,10 +16,14 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-    
-       <style name="Smile">
+
+    <style name="Smile">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="DialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
     <style name="Smile.TextView">
@@ -40,6 +44,7 @@
         <item name="android:layout_height">75dp</item>
         <item name="android:scaleType">fitXY</item>
     </style>
+
     <style name="Smile.ImageView.Photo_Middle">
         <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">60dp</item>
@@ -51,7 +56,6 @@
         <item name="android:layout_height">40dp</item>
         <item name="android:scaleType">fitXY</item>
     </style>
-
 
     <style name="Smile.TextView._Green">
         <item name="android:textColor">@color/green</item>
@@ -68,7 +72,5 @@
     <style name="Smile.TextView._Black">
         <item name="android:textColor">@color/base_color_text_black</item>
     </style>
-    
-    
 
 </resources>
