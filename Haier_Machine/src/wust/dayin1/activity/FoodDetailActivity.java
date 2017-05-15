@@ -1,10 +1,18 @@
 package wust.dayin1.activity;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import wust.dayin1.DAO.DBhelper;
 import wust.dayin1.enity.Enity;
 import wust.dayin1.tools.DialogDemo;
+import wust.dayin1.tools.LoadImagesTask;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -70,14 +78,59 @@ public class FoodDetailActivity extends Activity implements OnClickListener {
 		tv_detail_foodname.setText(enity.getFood_name());
 		tv_detail_level.setText(enity.getLevels());
 		tv_detail_effect.setText(enity.getEffects());
-		if (enity.getFood_pic() != null) // 网络库
-			enity.getFood_pic().loadImage(getApplicationContext(), iv_food);
+		String pic_path = enity.getFood_pic();
+		if (pic_path.startsWith("http://")) // 网络库
+			new LoadImagesTask(iv_food).execute(pic_path);
 		else // 本地库
 		{
-			Bitmap pic = BitmapFactory.decodeFile(getIntent().getStringExtra(
-					"pic_path"));
+			Bitmap pic = BitmapFactory.decodeFile(pic_path);
 			iv_food.setImageBitmap(pic);
 		}
+	}
+
+	/**
+	 * 加载本地图片 http://bbs.3gstdy.com
+	 * 
+	 * @param url
+	 * @return
+	 */
+	public static Bitmap getLoacalBitmap(String url) {
+		try {
+			FileInputStream fis = new FileInputStream(url);
+			return BitmapFactory.decodeStream(fis);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * 从服务器取图片 http://bbs.3gstdy.com
+	 * 
+	 * @param url
+	 * @return
+	 */
+	public static Bitmap getHttpBitmap(String url) {
+		URL myFileUrl = null;
+		Bitmap bitmap = null;
+		try {
+			myFileUrl = new URL(url);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		try {
+			HttpURLConnection conn = (HttpURLConnection) myFileUrl
+					.openConnection();
+			conn.setConnectTimeout(10000);
+			conn.setDoInput(true);
+			conn.connect();
+			InputStream is = conn.getInputStream();
+			bitmap = BitmapFactory.decodeStream(is);
+			is.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return bitmap;
 	}
 
 	@Override

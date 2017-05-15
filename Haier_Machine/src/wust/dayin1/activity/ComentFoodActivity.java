@@ -62,7 +62,12 @@ public class ComentFoodActivity extends Activity {
 
 									@Override
 									public void onSuccess() {
-										adapter.notifyDataSetChanged();// 底层的观察者模式
+										list.clear();
+										adapter = new ArrayAdapter<String>(context,
+												android.R.layout.simple_list_item_1,
+												list);
+										lv_comment_food.setAdapter(adapter);
+										getData();
 										et_comment.setText("");
 									}
 

@@ -151,6 +151,7 @@ public class CloudActivity extends Activity {
 						new FindListener<Menu>() {
 							@Override
 							public void onSuccess(List<Menu> arg0) {
+								list.clear();
 								int size = arg0.size();
 								for (int i = 0; i < size; i++) {
 									Enity enity = new Enity();

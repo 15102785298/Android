@@ -75,7 +75,7 @@
             android:layout_weight="0.24"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/m3" />
+            android:src="@drawable/loading" />
         <!-- 原来below和up属性才是relative里面的 -->
 
         <LinearLayout

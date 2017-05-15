@@ -7,7 +7,7 @@ import cn.bmob.v3.datatype.BmobFile;
 
 public class Enity implements Serializable {
 	private String food_name;
-	private BmobFile food_pic;
+	private String food_pic;
 	private String contents;
 	private String levels;
 	private String effects;
@@ -72,11 +72,11 @@ public class Enity implements Serializable {
 		this.food_name = food_name;
 	}
 
-	public BmobFile getFood_pic() {
+	public String getFood_pic() {
 		return food_pic;
 	}
 
-	public void setFood_pic(BmobFile food_pic) {
+	public void setFood_pic(String food_pic) {
 		this.food_pic = food_pic;
 	}
 }

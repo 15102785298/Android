@@ -23,8 +23,8 @@ public class Menu extends BmobObject {
 		this.times = times;
 	}
 
-	BmobFile pic;
-	int id;
+	String pic;
+	Integer id;
 
 	public Integer getId() {
 		return id;
@@ -34,11 +34,11 @@ public class Menu extends BmobObject {
 		this.id = id;
 	}
 
-	public BmobFile getPic() {
+	public String getPic() {
 		return pic;
 	}
 
-	public void setPic(BmobFile pic) {
+	public void setPic(String pic) {
 		this.pic = pic;
 	}
 
