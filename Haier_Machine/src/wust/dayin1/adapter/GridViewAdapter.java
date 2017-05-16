@@ -49,24 +49,19 @@ public class GridViewAdapter extends BaseAdapter {
 
 		if (convertView == null) {
 			holder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.gv_item, null);
+			convertView = inflater.inflate(R.layout.food_list_cell, null);
 
-			holder.label = (TextView) convertView
-					.findViewById(R.id.gv_item_appname);
-			holder.icon = (ImageView) convertView
-					.findViewById(R.id.gv_item_icon);
-			holder.icon.setImageBitmap(BitmapFactory.decodeResource(null,
-					R.drawable.loading));
+			holder.name = (TextView) convertView.findViewById(R.id.food_name);
+			holder.effect = (TextView) convertView.findViewById(R.id.effect);
+			holder.icon = (ImageView) convertView.findViewById(R.id.img_food);
 
 			convertView.setTag(holder);
 		} else {
 			holder = (ViewHolder) convertView.getTag();
-			holder.icon.setImageBitmap(BitmapFactory.decodeResource(null,
-					R.drawable.loading));
 		}
 
-		holder.label.setText(pkInfos.get(position).getFood_name());
-
+		holder.name.setText(pkInfos.get(position).getFood_name());
+		holder.effect.setText(pkInfos.get(position).getEffects());
 		new LoadImagesTask(holder.icon).execute(pkInfos.get(position)
 				.getFood_pic());
 		return convertView;
@@ -74,7 +69,8 @@ public class GridViewAdapter extends BaseAdapter {
 
 	class ViewHolder {
 		ImageView icon;
-		TextView label;
+		TextView name;
+		TextView effect;
 	}
 
 }

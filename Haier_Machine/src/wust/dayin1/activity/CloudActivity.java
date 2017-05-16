@@ -2,6 +2,7 @@ package wust.dayin1.activity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import wust.dayin1.adapter.CommunityAdapter;
 import wust.dayin1.adapter.GridViewAdapter;
@@ -10,6 +11,8 @@ import wust.dayin1.enity.Enity;
 import wust.dayin1.enity.Menu;
 import wust.dayin1.enity.User;
 import wust.dayin1.tools.ZProgressHUD;
+import wust.dayin1.view.RefreshListView;
+import wust.dayin1.view.RefreshListView.IRefreshListener;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +27,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import cn.bmob.v3.BmobQuery;
@@ -33,15 +37,16 @@ import cn.bmob.v3.listener.GetListener;
 
 import com.example.haier_machine.R;
 
-public class CloudActivity extends Activity {
+public class CloudActivity extends Activity implements IRefreshListener {
 	long exitTime = 0;
 	ImageView login;
 	ImageView tv_search;
 	Button btn_nativeLocal;
 	TextView tv_bind_machine;
-	GridView gv_main_food;
+	RefreshListView gv_main_food;
 	List<Enity> list = new ArrayList<Enity>();
 	boolean flag;
+	Button btn_reload;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,15 @@ public class CloudActivity extends Activity {
 	}
 
 	private void init() {
-
+		btn_reload = (Button) findViewById(R.id.btn_reload);
+		btn_reload.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View paramView) {
+				
+				getMenuData();
+			}
+		});
 		getMenuData();
 
 		// 登陆
@@ -82,7 +95,8 @@ public class CloudActivity extends Activity {
 				startActivity(i);
 			}
 		});
-		gv_main_food = (GridView) findViewById(R.id.gv_cloud_food);
+		gv_main_food = (RefreshListView) findViewById(R.id.gv_cloud_food);
+		gv_main_food.setInterface(this);
 		gv_main_food.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -147,10 +161,17 @@ public class CloudActivity extends Activity {
 			public void run() {
 				// TODO Auto-generated method stub
 				BmobQuery<Menu> query = new BmobQuery<Menu>();
+				query.order("id");
 				query.findObjects(getApplicationContext(),
 						new FindListener<Menu>() {
 							@Override
 							public void onSuccess(List<Menu> arg0) {
+								if (btn_reload.getVisibility() == 0) {
+									btn_reload.setVisibility(4);
+								}
+								if(gv_main_food.getVisibility()==4){
+									gv_main_food.setVisibility(0);
+								}
 								list.clear();
 								int size = arg0.size();
 								for (int i = 0; i < size; i++) {
@@ -168,15 +189,24 @@ public class CloudActivity extends Activity {
 								}
 								gv_main_food.setAdapter(new GridViewAdapter(
 										CloudActivity.this, list));
+								// 通知listView刷新数据完毕
+								gv_main_food.refreshComplete();
 								Toast.makeText(getApplicationContext(),
-										"载入成功！", Toast.LENGTH_LONG).show();
+										"载入成功！", Toast.LENGTH_SHORT).show();
 								progressHUD.dismissWithSuccess();
 							}
 
 							@Override
 							public void onError(int arg0, String arg1) {
+								if(gv_main_food.getVisibility()==0){
+									gv_main_food.setVisibility(4);
+								}
+								if(btn_reload.getVisibility()==4){
+									btn_reload.setVisibility(0);
+								}
+								progressHUD.dismissWithFailure();
 								Toast.makeText(getApplicationContext(), "载入错误",
-										Toast.LENGTH_LONG).show();
+										Toast.LENGTH_SHORT).show();
 
 							}
 						});
@@ -192,6 +222,22 @@ public class CloudActivity extends Activity {
 				&& event.getAction() == KeyEvent.ACTION_DOWN) {
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	public void onRefresh() {
+		Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				// 获取最新数据
+				getMenuData();
+				// 通知界面显示
+
+			}
+		}, 2000);
 	}
 
 }

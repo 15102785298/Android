@@ -62,33 +62,29 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/subsoft_listview"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btn_reload"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/relativeLayout1"
-        android:layout_margin="10dp"
-        android:divider="@color/blue_menu"
-        android:dividerHeight="0.5dp"
-        android:fastScrollEnabled="true"
-        android:padding="5dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/picreload"
         android:visibility="invisible" >
-    </ListView>
+    </Button>
 
-    <GridView
+    <wust.dayin1.view.RefreshListView
         android:id="@+id/gv_cloud_food"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/btn_nativeLocal"
         android:layout_below="@+id/relativeLayout1"
         android:layout_margin="8dp"
-        android:gravity="center"
+        android:gravity="left"
         android:horizontalSpacing="2dp"
         android:numColumns="2"
         android:scrollbars="none"
         android:verticalSpacing="20dp"
         android:visibility="visible" >
-    </GridView>
+    </wust.dayin1.view.RefreshListView>
     <!-- 权重是现形布局来控制的 -->
 
     <Button
