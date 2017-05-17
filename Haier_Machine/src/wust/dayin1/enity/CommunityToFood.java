@@ -9,6 +9,15 @@ public class CommunityToFood extends BmobObject{
 	private String userName;
 	private String aim_id;
 	private Integer id;
+	private Integer score;
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
 
 	public String getContent() {
 		return content;

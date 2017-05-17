@@ -64,9 +64,10 @@
 
     <Button
         android:id="@+id/btn_reload"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginTop="60dp"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:background="@drawable/picreload"
         android:visibility="invisible" >
     </Button>

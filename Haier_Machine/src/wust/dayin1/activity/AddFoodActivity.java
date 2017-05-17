@@ -15,6 +15,7 @@ import wust.dayin1.DAO.Service;
 import wust.dayin1.enity.Food;
 import wust.dayin1.tools.ActivitySelector;
 import wust.dayin1.tools.ImageUtils;
+import wust.dayin1.tools.NumberUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -99,9 +100,9 @@ public class AddFoodActivity extends Activity implements OnClickListener {
 				|| time.getText().toString().equals("")
 				|| effect.getText().toString().equals("")
 				|| mainstep.getText().toString().equals("")
-				|| content.getText().toString().equals("")) {
+				|| content.getText().toString().equals("") || pic_path == null) {
 			Toast.makeText(this, "请将信息填写完整", Toast.LENGTH_SHORT).show();
-		} else {
+		} else if (NumberUtil.isInteger(time.getText().toString())) {
 			Service service = new Service(getApplicationContext());
 			boolean flag = service.save(getFood());
 			if (flag) {
@@ -112,6 +113,8 @@ public class AddFoodActivity extends Activity implements OnClickListener {
 			} else {
 				Toast.makeText(this, "添加错误", Toast.LENGTH_SHORT).show();
 			}
+		} else {
+			Toast.makeText(this, "时间必须为数字！", Toast.LENGTH_SHORT).show();
 		}
 	}
 
