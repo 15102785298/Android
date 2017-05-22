@@ -138,7 +138,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
             android:background="@color/holo_blue"
-            android:text="积分商城"
+            android:text="我的订单"
             android:textColor="@color/white" />
 
         <RelativeLayout

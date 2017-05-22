@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     
-    <wust.dayin1.view.RefreshListView
+    <wust.tantian.view.RefreshListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-    </wust.dayin1.view.RefreshListView>
+    </wust.tantian.view.RefreshListView>
 </LinearLayout>
 

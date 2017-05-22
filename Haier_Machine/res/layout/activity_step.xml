@@ -58,12 +58,12 @@
             android:textColor="@color/white" />
     </RelativeLayout>
     
-    <wust.dayin1.view.JazzyViewPager
+    <wust.tantian.view.JazzyViewPager
         android:layout_margin="1dp"
         android:padding="3dp"
         android:id="@+id/jazzyViewPager1"
         android:layout_below="@+id/relativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
-    </wust.dayin1.view.JazzyViewPager>
+    </wust.tantian.view.JazzyViewPager>
 </RelativeLayout>

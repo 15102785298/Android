@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_wymimicry"
+    tools:context=".CloudActivity" >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/base_actionbar_bg"
+        android:padding="5dp" >
+
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:background="@drawable/btn_back_n"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_setting_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:lines="1"
+            android:text="我的订单"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
+
+        
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_order_reload"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        
+        android:background="@drawable/picreload"
+        android:visibility="invisible" >
+    </Button>
+
+    <wust.tantian.view.RefreshListView
+        android:id="@+id/gv_order_food"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/btn_ok"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_margin="8dp"
+        android:gravity="left"
+        android:horizontalSpacing="2dp"
+        android:numColumns="2"
+        android:scrollbars="none"
+        android:verticalSpacing="20dp"
+        android:visibility="visible" >
+    </wust.tantian.view.RefreshListView>
+    <!-- 权重是现形布局来控制的 -->
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/base_actionbar_bg"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="22sp" />
+
+</RelativeLayout>
